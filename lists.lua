@@ -17,14 +17,14 @@ Lists.BUFFS = {
     FONT_OF_MAGIC = 408083, -- Talent check
     TIP_THE_SCALES = 370553,
     SOURCE_OF_MAGIC = 369459,
-    
+
     -- Attunements
     BLACK_ATTUNEMENT = 403264,
     BLACK_ATTUNEMENT2 = 403295,
     BRONZE_ATTUNEMENT = 403265,
-    
+
     -- Other
-    BLESSING_OF_THE_BRONZE = {381732, 381741, 381746, 381748, 381749, 381750, 381751, 381752, 381753, 381754, 381756, 381757, 381758, 432652, 432658},
+    BLESSING_OF_THE_BRONZE = { 381732, 381741, 381746, 381748, 381749, 381750, 381751, 381752, 381753, 381754, 381756, 381757, 381758, 432652, 432658 },
 }
 
 Lists.DEBUFFS = {
@@ -46,6 +46,8 @@ Lists.DPS_DUMMIES = {
     [219250] = true, -- Tank Dummy
     [225984] = true, -- Dummy
     [199852] = true, -- PvP Dummy
+    [233824] = true, -- dimensius
+
 }
 
 --------------------------------------------------------------------------------
@@ -63,7 +65,7 @@ Lists.INTERRUPT_WHITELIST = {
     [431333] = true, -- Tormenting Beam
     [207167] = true, -- Blinding Sleet
     [217832] = true, -- Imprison
-    
+
     -- Add more from Nova_Library/lists.lua if needed
 }
 

@@ -74,7 +74,7 @@ end
 callback.blisteringscales = function()
     if not menu.AUTO_BLISTERING_SCALES:get_state() then return false end
     if not spells.BLISTERING_SCALES:is_learned() or not spells.BLISTERING_SCALES:cooldown_up() then return false end
-
+    if funcs.count_blistering_scales(25) >= 1 then return false end
     local tank = funcs.get_tank_without_blistering(25)
     if tank and tank:is_valid() and tank:distance() <= 25 then
         return spells.BLISTERING_SCALES:cast_safe(tank, "Blistering Scales", { skip_facing = true })
@@ -137,6 +137,11 @@ callback.upheaval = function()
     if cluster_target and cluster_target:is_valid() and cluster_target:distance() <= 25 then
         return izi.cast_charge_spell(spells.UPHEAVAL, 1, cluster_target, "Upheaval")
     end
+    --fallback to target if valid enemy
+    local target = funcs.get_valid_enemy(spells.UPHEAVAL, nil, true, nil, lists.DPS_DUMMIES)
+    if target and target:is_valid() and target:distance() <= 100 then
+        return izi.cast_charge_spell(spells.UPHEAVAL, 1, target, "Upheaval")
+    end
     return false
 end
 
@@ -149,6 +154,11 @@ callback.eruption = function()
     local cluster_target = funcs.get_biggest_cluster(10)
     if cluster_target and cluster_target:is_valid() and cluster_target:distance() <= 25 then
         return spells.ERUPTION:cast(cluster_target, "Eruption", { skip_moving = true })
+    end
+    --fallback to target if valid enemy
+    local target = funcs.get_valid_enemy(spells.ERUPTION, nil, true, nil, lists.DPS_DUMMIES)
+    if target and target:is_valid() and target:distance() <= 100 then
+        return spells.ERUPTION:cast(target, "Eruption", { skip_moving = true })
     end
     return false
 end

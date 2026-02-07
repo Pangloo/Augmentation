@@ -84,6 +84,11 @@ function Functions.get_ally_without_prescience(range)
     return best
 end
 
+function Functions.count_blistering_scales(range)
+    range = range or 100
+    return Functions.count_allies_with_buff(lists.BUFFS.BLISTERING_SCALES, range)
+end
+
 function Functions.get_tank_without_blistering(range)
     range = range or 40
     local allies = izi.party(range)
@@ -96,7 +101,7 @@ function Functions.get_tank_without_blistering(range)
 end
 
 function Functions.count_source_of_magic(range)
-    range = range or 40
+    range = range or 100
     if not spells.SOURCE_OF_MAGIC:is_learned() then return 0 end
     local buff_id = lists.BUFFS.SOURCE_OF_MAGIC
     return Functions.count_allies_with_buff(buff_id, range)
@@ -129,7 +134,7 @@ function Functions.should_cast_spender()
     if not me then return false end
 
     -- Check for Ebon Might
-    local has_em = me:has_buff(lists.BUFFS.EBON_MIGHT_BUFF)
+    local has_em = me:has_buff(lists.BUFFS.EBON_MIGHT_BUFF) or me:has_buff(lists.BUFFS.EBON_MIGHT)
     if has_em then return true end
 
     -- Check for Essence Burst
@@ -151,7 +156,7 @@ function Functions.should_cast_empowered(spell_cd)
     if not me then return false end
 
     -- Check for Ebon Might
-    local has_em = me:has_buff(lists.BUFFS.EBON_MIGHT_BUFF)
+    local has_em = me:has_buff(lists.BUFFS.EBON_MIGHT_BUFF) or me:has_buff(lists.BUFFS.EBON_MIGHT)
     if has_em then return true end
 
     return false
