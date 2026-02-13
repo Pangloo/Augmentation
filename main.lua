@@ -146,8 +146,8 @@ callback.upheaval = function()
 end
 
 callback.eruption = function()
-    if not spells.ERUPTION:is_learned() or not spells.ERUPTION:cooldown_up() then return false end
     if not funcs.can_cast_moving() then return false end
+    if not spells.ERUPTION:cooldown_up() then return false end
 
     if not funcs.should_cast_spender() then return false end
 
@@ -166,6 +166,7 @@ end
 callback.livingflame = function()
     if not spells.LIVING_FLAME:is_learned() then return false end
     if not funcs.can_cast_moving() then return false end
+    if not spells.LIVING_FLAME:cooldown_up() then return false end
 
     local target = funcs.get_valid_enemy(spells.LIVING_FLAME, nil, true, nil, lists.DPS_DUMMIES)
     if target then
@@ -176,6 +177,7 @@ end
 
 callback.azurestrike = function()
     if not spells.AZURE_STRIKE:is_learned() then return false end
+    if not spells.AZURE_STRIKE:cooldown_up() then return false end
 
     local target = funcs.get_valid_enemy(spells.AZURE_STRIKE, nil, true, nil, lists.DPS_DUMMIES)
     if target then
